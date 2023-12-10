@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\metallenium_backend.API.props" />
+</Project>

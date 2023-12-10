@@ -1,0 +1,15 @@
+D:\University\Current\Course_Work\metallenium_backend\metallenium_backend.Application\bin\Debug\net6.0\metallenium_backend.Application.deps.json
+D:\University\Current\Course_Work\metallenium_backend\metallenium_backend.Application\bin\Debug\net6.0\metallenium_backend.Application.dll
+D:\University\Current\Course_Work\metallenium_backend\metallenium_backend.Application\bin\Debug\net6.0\metallenium_backend.Application.pdb
+D:\University\Current\Course_Work\metallenium_backend\metallenium_backend.Application\bin\Debug\net6.0\metallenium_backend.Domain.dll
+D:\University\Current\Course_Work\metallenium_backend\metallenium_backend.Application\bin\Debug\net6.0\metallenium_backend.Domain.pdb
+D:\University\Current\Course_Work\metallenium_backend\metallenium_backend.Application\obj\Debug\net6.0\metallenium_backend.Application.csproj.AssemblyReference.cache
+D:\University\Current\Course_Work\metallenium_backend\metallenium_backend.Application\obj\Debug\net6.0\metallenium_backend.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\University\Current\Course_Work\metallenium_backend\metallenium_backend.Application\obj\Debug\net6.0\metallenium_backend.Application.AssemblyInfoInputs.cache
+D:\University\Current\Course_Work\metallenium_backend\metallenium_backend.Application\obj\Debug\net6.0\metallenium_backend.Application.AssemblyInfo.cs
+D:\University\Current\Course_Work\metallenium_backend\metallenium_backend.Application\obj\Debug\net6.0\metallenium_backend.Application.csproj.CoreCompileInputs.cache
+D:\University\Current\Course_Work\metallenium_backend\metallenium_backend.Application\obj\Debug\net6.0\metallenium_backend.Application.csproj.CopyComplete
+D:\University\Current\Course_Work\metallenium_backend\metallenium_backend.Application\obj\Debug\net6.0\metallenium_backend.Application.dll
+D:\University\Current\Course_Work\metallenium_backend\metallenium_backend.Application\obj\Debug\net6.0\refint\metallenium_backend.Application.dll
+D:\University\Current\Course_Work\metallenium_backend\metallenium_backend.Application\obj\Debug\net6.0\metallenium_backend.Application.pdb
+D:\University\Current\Course_Work\metallenium_backend\metallenium_backend.Application\obj\Debug\net6.0\ref\metallenium_backend.Application.dll
