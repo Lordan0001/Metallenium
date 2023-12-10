@@ -1,0 +1,71 @@
+.header {
+    background-color: #1f1f1f;
+    color: white;
+    padding: 10px;
+
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 24px;
+    margin-left: 20px;
+}
+
+.menu {
+    list-style: none;
+    display: flex;
+}
+
+.linkHeader {
+    margin-right: 20px;
+    text-decoration: none;
+    color: white;
+    padding: 5px 10px;
+}
+
+.menu li a:hover {
+    background-color: #555;
+}
+.logo {
+    text-decoration: none;
+    color: #fff;
+}
+
+.logo:hover {
+    color: #f0f0ff;
+}
+.logoutButton{
+    background: none;
+    color: #cccccc;
+}
+.logoutButton:hover {
+    background-color: #808081;
+}
+.userInfo{
+    margin-right: 20px;
+    text-decoration: none;
+    color: white;
+}
+.searchContainer {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.crossIcon {
+    margin-left: 8px;
+    cursor: pointer;
+    color: white;
+    font-size: 20px;
+}
+.searchIcon {
+    margin-right: 8px;
+    cursor: pointer;
+    color: white;
+    font-size: 30px;
+}

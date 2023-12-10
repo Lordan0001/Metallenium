@@ -1,0 +1,49 @@
+/*body {
+    background-color: #ffffff;
+    color: #f0f0ff;
+}*/
+.pageContainer {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+.pageContainer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+   /* background-image: url('../../Images/pent3.jpg');*/
+    background-size: cover;
+    background-position: center;
+    opacity: 0.2;
+    pointer-events: none;
+    z-index: -1;
+    background-attachment: fixed;
+}
+
+
+.bandsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 40px;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.bandsContainer.loaded {
+    opacity: 1; /* Когда загрузка завершена, делаем контейнер видимым */
+}
+
+.bandsContainer{
+    flex: 1;
+}
+
+.footer {
+    margin-top: auto;
+}

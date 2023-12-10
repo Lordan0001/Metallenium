@@ -1,0 +1,34 @@
+.bandsContainerAlbum {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    opacity: 1; /* Начальное состояние прозрачности */
+    transition: opacity 0.5s ease-in-out;
+}
+
+.albumsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+.albumsContainer.loaded {
+    opacity: 1;
+}
+
+.pageContainer {
+    display: flex;
+    flex-direction: column;
+    min-height: 60vh;
+}
+
+.bandsContainerAlbum, .albumsContainer, .songsContainer {
+    flex: 1;
+}
+
+.footer {
+    margin-top: auto;
+}

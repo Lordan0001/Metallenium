@@ -1,0 +1,66 @@
+
+.footerContainer{
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+    margin-top: auto;
+}
+.pageContainer {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+.content {
+    flex: 1;
+}
+
+.footer {
+    background-color: #1f1f1f;
+    color: #ffffff;
+    padding: 20px 0;
+    width: 100%;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footerContent {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.footerLinks {
+    display: flex;
+    gap: 20px;
+}
+
+.footerLinks a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.footerInfo {
+    margin-top: 20px;
+    font-size: 12px;
+}
+
+.footerInfo p {
+    margin: 0;
+}
+
+/* Add hover effect on links and social links */
+.footerLinks a:hover,
+.socialLink:hover {
+    opacity: 0.8;
+}
