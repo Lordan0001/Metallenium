@@ -24,6 +24,10 @@ builder.Services.AddScoped<IBandService, BandService>();
 builder.Services.AddScoped<IAlbumRepository, AlbumRepository>();
 builder.Services.AddScoped<IAlbumService, AlbumService>();
 
+//User
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserService, UserService>();
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -60,3 +64,8 @@ app.UseCors(builder => builder
     .AllowAnyMethod()); 
 
 app.Run();
+
+
+// TODO: Error handler
+// TODO: User Mapping (add nameField) and mapping
+// TODO: Delete hardCoded User role in repository

@@ -18,6 +18,9 @@ namespace metallenium_backend.Domain.Profiles
 
             CreateMap<AlbumDto, Album>();
             CreateMap<Album, AlbumDto>();
+
+            CreateMap<UserDto, User>();
+            CreateMap<User, UserDto>();
         }
     }
 }
