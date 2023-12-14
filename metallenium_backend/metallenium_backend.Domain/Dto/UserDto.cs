@@ -8,8 +8,10 @@ namespace metallenium_backend.Domain.Dto
 {
     public class UserDto
     {
-        public int UserDtoId { get; set; }
-        public string UserDtoEmail { get; set; } = string.Empty;
-        public string UserDtoPassword { get; set; } = string.Empty;
+        public int UserId { get; set; }
+        public string UserFirstName { get; set; } = String.Empty;
+        public string UserSecondName { get; set; } = String.Empty;
+        public string UserEmail { get; set; } = String.Empty;
+        public string UserPassword { get; set; } = String.Empty;
     }
 }

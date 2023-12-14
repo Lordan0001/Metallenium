@@ -225,7 +225,7 @@ namespace metallenium_backend.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserFullName")
+                    b.Property<string>("UserFirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -237,6 +237,10 @@ namespace metallenium_backend.API.Migrations
 
                     b.Property<int>("UserRoleId")
                         .HasColumnType("int");
+
+                    b.Property<string>("UserSecondName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("UserId");
 

@@ -15,7 +15,8 @@ namespace metallenium_backend.Domain.Models
         [Required]
         [EmailAddress]
         public string UserEmail { get; set; } = String.Empty;
-        public string UserFullName { get; set; } = String.Empty;
+        public string UserFirstName { get; set; } = String.Empty;
+        public string UserSecondName { get; set; } = String.Empty;
         public int UserRoleId { get; set; }
         public byte[]? UserPasswordHash { get; set; }
         public byte[]? UserPasswordSalt { get; set; }

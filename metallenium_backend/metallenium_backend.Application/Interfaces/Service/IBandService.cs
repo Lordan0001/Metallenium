@@ -1,4 +1,5 @@
-﻿using metallenium_backend.Domain.Models;
+﻿using metallenium_backend.Domain.Dto;
+using metallenium_backend.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,10 @@ namespace metallenium_backend.Application.Interfaces.Service
 {
     public interface IBandService
     {
-        Task<List<Band>> GetAllBands();
-        Task<Band> GetBandById(int id);
-        Task<Band> CreateBand(Band band);
-        Task<Band> UpdateBand(Band band);
-        Task<Band> DeleteBand(int id);
+        Task<List<BandDto>> GetAllBands();
+        Task<BandDto> GetBandById(int id);
+        Task<BandDto> CreateBand(BandDto bandDto);
+        Task<BandDto> UpdateBand(BandDto bandDto);
+        Task<BandDto> DeleteBand(int id);
     }
 }

@@ -1,4 +1,5 @@
-﻿using metallenium_backend.Domain.Models;
+﻿using metallenium_backend.Domain.Dto;
+using metallenium_backend.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,12 +10,12 @@ namespace metallenium_backend.Application.Interfaces.Service
 {
     public interface IAlbumService
     {
-        Task<List<Album>> GetAllAlbums();
-        Task<List<Album>> GetAlbumsByBandId(int id);
-        Task<Album> GetAlbumById(int id);
-        Task<Album> CreateAlbum(Album album);
-        Task<Album> UpdateAlbum(Album album);
-        Task<Album> DeleteAlbum(int id);
+        Task<List<AlbumDto>> GetAllAlbums();
+        Task<List<AlbumDto>> GetAlbumsByBandId(int id);
+        Task<AlbumDto> GetAlbumById(int id);
+        Task<AlbumDto> CreateAlbum(AlbumDto albumDto);
+        Task<AlbumDto> UpdateAlbum(AlbumDto albumDto);
+        Task<AlbumDto> DeleteAlbum(int id);
     }
 
 }

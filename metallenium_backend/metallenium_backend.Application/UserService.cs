@@ -2,6 +2,7 @@
 using metallenium_backend.Application.Interfaces.Repository;
 using metallenium_backend.Application.Interfaces.Service;
 using metallenium_backend.Domain.Dto;
+using metallenium_backend.Domain.Dto.Request;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -29,21 +30,21 @@ namespace metallenium_backend.Application
         public async Task<UserDto> Registration(UserDto userDTO)
         {
 
-            if (string.IsNullOrWhiteSpace(userDTO.UserDtoEmail) || string.IsNullOrWhiteSpace(userDTO.UserDtoPassword))
+            if (string.IsNullOrWhiteSpace(userDTO.UserEmail) || string.IsNullOrWhiteSpace(userDTO.UserPassword))
             {
                 throw new ValidationException("Email and Password are required.");
             }
             var userLogin = await _userRepository.Registration(userDTO);
             return _mapper.Map<UserDto>(userLogin);
         }
-        public async Task<String> Login(UserDto userDTO)
+        public async Task<String> Login(AuthenticateDto authenticateDto)
         {
 
-            if (string.IsNullOrWhiteSpace(userDTO.UserDtoEmail) || string.IsNullOrWhiteSpace(userDTO.UserDtoPassword))
+            if (string.IsNullOrWhiteSpace(authenticateDto.Email) || string.IsNullOrWhiteSpace(authenticateDto.Password))
             {
                 throw new ValidationException("Email and Password are required.");
             }
-            var userLogin = await _userRepository.Login(userDTO);
+            var userLogin = await _userRepository.Login(authenticateDto);
             return userLogin;
         }
 

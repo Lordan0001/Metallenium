@@ -1,3 +1,4 @@
+using metallenium_backend.API.Middlewares;
 using metallenium_backend.Application;
 using metallenium_backend.Application.Interfaces.Repository;
 using metallenium_backend.Application.Interfaces.Service;
@@ -45,8 +46,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 
@@ -66,6 +69,6 @@ app.UseCors(builder => builder
 app.Run();
 
 
-// TODO: Error handler
+// TODO: Error handler (also in db)
 // TODO: User Mapping (add nameField) and mapping
 // TODO: Delete hardCoded User role in repository

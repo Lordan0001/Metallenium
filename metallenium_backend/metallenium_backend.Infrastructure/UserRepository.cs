@@ -1,5 +1,7 @@
-﻿using metallenium_backend.Application.Interfaces.Repository;
+﻿using AutoMapper;
+using metallenium_backend.Application.Interfaces.Repository;
 using metallenium_backend.Domain.Dto;
+using metallenium_backend.Domain.Dto.Request;
 using metallenium_backend.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -18,10 +20,12 @@ namespace metallenium_backend.Infrastructure
     public class UserRepository : IUserRepository//Implement
     {
         private readonly MainDbContext _mainDbContext;
+        private readonly IMapper _mapper;
         private readonly IConfiguration _configuration;
-        public UserRepository(MainDbContext mainDbContext, IConfiguration configuration)
+        public UserRepository(MainDbContext mainDbContext,IMapper mapper, IConfiguration configuration)
         {
             _mainDbContext = mainDbContext;
+            _mapper = mapper;
             _configuration = configuration;
         }
 
@@ -31,40 +35,42 @@ namespace metallenium_backend.Infrastructure
             return await _mainDbContext.Users.ToListAsync();
         }
 
-        public async Task<String> Login(UserDto userDto)
+        public async Task<String> Login(AuthenticateDto authenticateDto)
         {
-            var existingUser = await _mainDbContext.Users.FirstOrDefaultAsync(u => u.UserEmail == userDto.UserDtoEmail);
+            var existingUser = await _mainDbContext.Users.FirstOrDefaultAsync(u => u.UserEmail == authenticateDto.Email);
+
+            if (existingUser == null)
+            {
+                throw new KeyNotFoundException("User not found with the specified email.");
+            }
 
             var userRole = await _mainDbContext.Roles.FirstOrDefaultAsync(r => r.RoleId == existingUser.UserRoleId);
             string role = userRole.RoleName;//null
 
-            if (!VerifyPasswordHash(userDto.UserDtoPassword, existingUser.UserPasswordHash, existingUser.UserPasswordSalt))
+            if (!VerifyPasswordHash(authenticateDto.Password, existingUser.UserPasswordHash, existingUser.UserPasswordSalt))
             {
-                throw new KeyNotFoundException();
+                throw new KeyNotFoundException("User not found with this password");
             }
 
             string token = CreateToken(existingUser, role);
 
-/*            var response = new
-            {
-                Token = token,
-                User = existingUser
-            };*/
 
             return token;
         }
 
-        public async Task<User> Registration(UserDto userDTO)
+        public async Task<User> Registration(UserDto userDto)
         {
-            var alredyExistingEmail = await _mainDbContext.Users.FirstOrDefaultAsync(u => u.UserEmail == userDTO.UserDtoEmail);
+            var alredyExistingEmail = await _mainDbContext.Users.FirstOrDefaultAsync(u => u.UserEmail == userDto.UserEmail);
             if (alredyExistingEmail != null)
             {
                 throw new KeyNotFoundException("User with this email already exist!");
 
             }
-            CreatePasswordHash(userDTO.UserDtoPassword, out byte[] passwordHash, out byte[] passwordSalt);
+            CreatePasswordHash(userDto.UserPassword, out byte[] passwordHash, out byte[] passwordSalt);
             User user = new User();
-            user.UserEmail = userDTO.UserDtoEmail;
+            user.UserEmail = userDto.UserEmail;
+            user.UserFirstName = userDto.UserFirstName;
+            user.UserSecondName = userDto.UserSecondName;
             user.UserPasswordHash = passwordHash;
             user.UserPasswordSalt = passwordSalt;
             user.UserRoleId = 1;//change
@@ -79,12 +85,11 @@ namespace metallenium_backend.Infrastructure
 
             List<Claim> claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, user.UserFullName),
                 new Claim(ClaimTypes.Email, user.UserEmail),
                 new Claim(ClaimTypes.Role, userRole),
             };
             var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(
-                _configuration.GetSection("AppSettings:Token").Value));
+                _configuration.GetSection("JWT:Key").Value));
 
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 

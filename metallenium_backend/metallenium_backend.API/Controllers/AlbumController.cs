@@ -43,16 +43,16 @@ namespace metallenium_backend.API.Controllers
         [HttpPost]
         public async Task<ActionResult<Album>> CreateAlbum(AlbumDto albumDto)
         {
-            var album = _mapper.Map<Album>(albumDto);
-            var createdAlbum = await _albumService.CreateAlbum(album);
+            //var album = _mapper.Map<Album>(albumDto);
+            var createdAlbum = await _albumService.CreateAlbum(albumDto);
             return Ok(createdAlbum);
         }
 
         [HttpPut]
         public async Task<ActionResult<Album>> UpdateAlbum(AlbumDto albumDto)
         {
-            var album = _mapper.Map<Album>(albumDto);
-            var updatedAlbum = await _albumService.UpdateAlbum(album);
+            //var album = _mapper.Map<Album>(albumDto);
+            var updatedAlbum = await _albumService.UpdateAlbum(albumDto);
             return Ok(updatedAlbum);
 
         }
