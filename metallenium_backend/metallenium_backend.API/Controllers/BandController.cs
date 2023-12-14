@@ -39,14 +39,13 @@ namespace metallenium_backend.API.Controllers
         }
         [HttpPost]
         public async Task<ActionResult<Band>> CreateBand(BandDto bandDto) {
-          //  var band = _mapper.Map<Band>(bandDto);
             var createdBand = await _bandService.CreateBand(bandDto);
             return Ok(createdBand);
         }
         [HttpPut]
         public async Task<ActionResult<Band>> UpdateBand(BandDto bandDto)
         {
-            //var band = _mapper.Map<Band>(bandDto);
+
             var updatedBand = await _bandService.UpdateBand(bandDto);
             return Ok(updatedBand);
         }

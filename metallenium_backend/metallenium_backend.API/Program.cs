@@ -29,6 +29,25 @@ builder.Services.AddScoped<IAlbumService, AlbumService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 
+//City
+builder.Services.AddScoped<ICityRepository, CityRepository>();
+builder.Services.AddScoped<ICityService, CityService>();
+
+//ConfirmedTicket
+builder.Services.AddScoped<IConfirmedTicketRepository, ConfirmedTicketRepository>();
+builder.Services.AddScoped<IConfirmedTicketService, ConfirmedTicketService>();
+
+//Country
+builder.Services.AddScoped<ICountryRepository, CountryRepository>();
+builder.Services.AddScoped<ICountryService, CountryService>();
+
+//Place
+builder.Services.AddScoped<IPlaceRepository, PlaceRepository>();
+builder.Services.AddScoped<IPlaceService, PlaceService>();
+
+//Ticket
+builder.Services.AddScoped<ITicketRepository, TicketRepository>();
+builder.Services.AddScoped<ITicketService, TicketService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

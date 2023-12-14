@@ -26,7 +26,10 @@ namespace metallenium_backend.Infrastructure
         {
             var band = await _mainDbContext.Bands.FirstOrDefaultAsync(b => b.BandId == id);
 
-
+            if(band == null)
+            {
+                throw new KeyNotFoundException("User not found with the specified email.");
+            }
             return band;
         }
         public async Task<Band> CreateBand(Band band)
@@ -46,7 +49,11 @@ namespace metallenium_backend.Infrastructure
         public async Task<Band> DeleteBand(int id)
         {
             var bandToDelete = await _mainDbContext.Bands.FirstOrDefaultAsync(b => b.BandId == id);
+            if (bandToDelete == null)
+            {
+                throw new KeyNotFoundException($"Band: {id} not found");
 
+            }
             _mainDbContext.Bands.Remove(bandToDelete);
             await _mainDbContext.SaveChangesAsync();
             return bandToDelete;

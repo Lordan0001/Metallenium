@@ -19,7 +19,13 @@ namespace metallenium_backend.Infrastructure
         }
         public async Task<Album> GetAlbumById(int id)
         {
-            return await _mainDbContext.Albums.FirstOrDefaultAsync(a => a.AlbumId == id);
+            var album = await _mainDbContext.Albums.FirstOrDefaultAsync(a => a.AlbumId == id);
+
+            if (album == null)
+            {
+                throw new KeyNotFoundException($"Album: {id} not found");
+            }
+            return album;
         }
 
         public async Task<List<Album>> GetAllAlbums()
