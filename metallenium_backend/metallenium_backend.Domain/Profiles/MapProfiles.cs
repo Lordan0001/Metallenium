@@ -22,6 +22,9 @@ namespace metallenium_backend.Domain.Profiles
             CreateMap<UserDto, User>();
             CreateMap<User, UserDto>();
 
+            CreateMap<CityDto, City>();
+            CreateMap<City, CityDto>();
+
             CreateMap<ConfirmedTicketDto, ConfirmedTicket>();
             CreateMap<ConfirmedTicket, ConfirmedTicketDto>();
 

@@ -24,7 +24,7 @@ namespace metallenium_backend.Application
         public async Task<List<CityDto>> GetAllCities()
         {
            var cities = await _cityRepository.GetAllCities();
-            return _mapper.Map<List<CityDto>>(cities); 
+            return _mapper.Map<List<CityDto>>(cities);//List 
         }
 
         public async Task<CityDto> GetCityById(int id)

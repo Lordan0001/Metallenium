@@ -6,6 +6,32 @@ export const bandsState = atom({
 });
 
 export const albumsState = atom({
-    key: 'albumState',
+    key: 'albumsState',
+    default: [],
+});
+
+export const citiesState = atom({
+    key: 'citiesState',
+    default: [],
+});
+
+export const confirmedTicketsState = atom({
+    key: 'confirmedTicketsState',
+    default: [],
+});
+export const countriesState = atom({
+    key: 'countriesState',
+    default: [],
+});
+export const placesState = atom({
+    key: 'placesState',
+    default: [],
+});
+export const ticketsState = atom({
+    key: 'ticketsState',
+    default: [],
+});
+export const usersState = atom({
+    key: 'usersState',
     default: [],
 });

@@ -9,6 +9,7 @@ namespace metallenium_backend.Domain.Dto
 {
     public class TicketDto
     {
+        public int TicketId { get; set; }
         public int UserId { get; set; }
         public int CountryId { get; set; }
         public int CityId { get; set; }
