@@ -1,6 +1,6 @@
 import {useRecoilState} from "recoil";
 import {useEffect, useState} from "react";
-import {citiesState, countriesState} from "../../../Recoil/Atoms";
+import {citiesState, countriesState, selectedCountriesState} from "../../../Recoil/Atoms";
 import {CountryService as cityService, CountryService} from "../../../Service/CountryService";
 import {CityService} from "../../../Service/CityService";
 
@@ -10,7 +10,7 @@ const PickCountry = () => {
     const [Countries, setCountries] = useRecoilState(countriesState)
     const [Cities, setCities] = useRecoilState(citiesState)
     const [selectedCountryName, setSelectedCountryName] = useState("");
-    const [selectedCountryId, setSelectedCountryId] = useState("");
+    const [selectedCountryId, setSelectedCountryId] = useRecoilState(selectedCountriesState);
 
     useEffect(() => {
         // Fetch Countries data and store them in the state
@@ -50,7 +50,7 @@ const PickCountry = () => {
             <select value={selectedCountryName} onChange={handleCountryChange}>
                 <option value="">Select a Country</option>
                 {Countries.map((country) => (
-                    <option key={country.countryId} value={country.CountryName}>
+                    <option key={country.countryId} value={country.countryName}>
                         {country.countryName}
                     </option>
                 ))}

@@ -14,6 +14,10 @@ export const citiesState = atom({
     key: 'citiesState',
     default: [],
 });
+export const selectedCitiesState = atom({
+    key: 'selectedCitiesState',
+    default: [],
+});
 
 export const confirmedTicketsState = atom({
     key: 'confirmedTicketsState',
@@ -23,8 +27,18 @@ export const countriesState = atom({
     key: 'countriesState',
     default: [],
 });
+
+export const selectedCountriesState = atom({
+    key: 'selectedCountriesState',
+    default: [],
+});
+
 export const placesState = atom({
     key: 'placesState',
+    default: [],
+});
+export const selectedPlacesState = atom({
+    key: 'selectedPlacesState',
     default: [],
 });
 export const ticketsState = atom({
@@ -38,6 +52,11 @@ export const tokenState = atom({
 
 export const userState = atom({
     key: 'userState',
+    default: '',
+});
+
+export const fullUserState = atom({
+    key: 'fullUserState',
     default: '',
 });
 

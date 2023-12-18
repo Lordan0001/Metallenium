@@ -9,7 +9,7 @@ import styles from './Home.module.css';
 import {useCookies} from "react-cookie";
 import {UserService} from "../../Service/UserService";
 
-const Home = () => {//add get user by email to use in ticket
+const Home = () => {
     const [bands, setBands] = useRecoilState(bandsState);
     const [loading, setLoading] = useState(true);
     const [token, setToken] = useRecoilState(tokenState);

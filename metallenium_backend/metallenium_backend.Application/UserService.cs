@@ -3,6 +3,8 @@ using metallenium_backend.Application.Interfaces.Repository;
 using metallenium_backend.Application.Interfaces.Service;
 using metallenium_backend.Domain.Dto;
 using metallenium_backend.Domain.Dto.Request;
+using metallenium_backend.Domain.Dto.Response;
+using metallenium_backend.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -26,6 +28,11 @@ namespace metallenium_backend.Application
         {
             var users = await _userRepository.GetAllUsers();
             return _mapper.Map<List<UserDto>>(users);
+        }
+        public async Task<GetUserResponseDto> GetUserByEmail(string email)
+        {
+            var user = await _userRepository.GetUserByEmail(email);
+            return _mapper.Map<GetUserResponseDto>(user);
         }
         public async Task<UserDto> Registration(UserDto userDTO)
         {

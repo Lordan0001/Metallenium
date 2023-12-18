@@ -1,5 +1,7 @@
 ﻿using metallenium_backend.Domain.Dto;
 using metallenium_backend.Domain.Dto.Request;
+using metallenium_backend.Domain.Dto.Response;
+using metallenium_backend.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +15,7 @@ namespace metallenium_backend.Application.Interfaces.Service
         Task<List<UserDto>> GetAllUsers();
         Task<UserDto> Registration(UserDto userDTO);
         Task<String> Login(AuthenticateDto authenticateDto);
+
+        Task<GetUserResponseDto> GetUserByEmail(string email);
     }
 }

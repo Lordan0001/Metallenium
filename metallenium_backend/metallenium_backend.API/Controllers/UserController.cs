@@ -40,7 +40,13 @@ namespace metallenium_backend.API.Controllers
             var token = await _userService.Login(authenticateDto);
             return Ok(token);
         }
-
+        [HttpPost]
+        [Route("GetUserByEmail")]
+        public async Task<ActionResult> GetUserByEmail(GetUserByEmailRequestDto getUserByEmailRequestDto)
+        {
+            var user = await _userService.GetUserByEmail(getUserByEmailRequestDto.Email);
+            return Ok(user);
+        }
         [HttpGet("getMe"), Authorize]//need to separate logic
         public ActionResult<object> GetMe()
         {

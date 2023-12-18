@@ -1,6 +1,6 @@
 import {useRecoilState} from "recoil";
 import {useEffect, useState} from "react";
-import {citiesState, CitiesState, placesState} from "../../../Recoil/Atoms";
+import {citiesState, CitiesState, placesState, selectedCitiesState} from "../../../Recoil/Atoms";
 import {CityService} from "../../../Service/CityService";
 import {PlaceService} from "../../../Service/PlaceService";
 
@@ -10,7 +10,7 @@ const PickCity = () => {
     const [Cities, setCities] = useRecoilState(citiesState)
     const [Places, setPlaces] = useRecoilState(placesState)
     const [selectedCityName, setSelectedCityName] = useState("");
-    const [selectedCityId, setSelectedCityId] = useState("");
+    const [selectedCityId, setSelectedCityId] = useRecoilState(selectedCitiesState);
 
     useEffect(() => {
         // Fetch Cities data and store them in the state
@@ -33,6 +33,7 @@ const PickCity = () => {
         if (selectedCity) {
             setSelectedCityId(selectedCity.cityId);
             const newPlacesState = await PlaceService.getPlacesByCityId(selectedCity.cityId);
+            console.log(selectedCity.cityId)
             setPlaces(newPlacesState);
         } else {
             setSelectedCityId("");

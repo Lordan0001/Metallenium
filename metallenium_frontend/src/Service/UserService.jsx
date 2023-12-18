@@ -23,6 +23,12 @@ export const UserService = {
         const response = await axios.post('/User',data)
         return response.data;
     },
+
+    async getUserByEmail (data) {
+        const response = await axios.post('/User/getuserbyemail',data)
+        return response.data;
+    },
+
     async authenticate (data) {
         const response = await axios.post('/User/authenticate',data)
         return response.data;

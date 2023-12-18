@@ -1,6 +1,6 @@
 import {useRecoilState} from "recoil";
 import {useEffect, useState} from "react";
-import {placesState} from "../../../Recoil/Atoms";
+import {placesState, selectedPlacesState} from "../../../Recoil/Atoms";
 import {PlaceService} from "../../../Service/PlaceService";
 
 
@@ -8,7 +8,7 @@ const PickPlace = () => {
 
     const [Places, setPlaces] = useRecoilState(placesState)
     const [selectedPlaceName, setSelectedPlaceName] = useState("");
-    const [selectedPlaceId, setSelectedPlaceId] = useState("");
+    const [selectedPlaceId, setSelectedPlaceId] = useRecoilState(selectedPlacesState);
 
     useEffect(() => {
         // Fetch Places data and store them in the state
@@ -27,10 +27,18 @@ const PickPlace = () => {
     const handlePlaceChange = (event) => {
         setSelectedPlaceName(event.target.value);
 
-        // Find the corresponding PlaceId based on the selected PlaceName
-        const selectedPlace = Places.find((Place) => Place.PlaceName === event.target.value);
+        // Получите первые 5 символов из event.target.value
+        const inputAddressPrefix = event.target.value.substring(0, 5);
+
+        // Найдите соответствующее место по адресу, сравнивая первые 5 символов
+        const selectedPlace = Places.find((place) => {
+            const placeAddressPrefix = place.address.substring(0, 5);
+            return placeAddressPrefix === inputAddressPrefix;
+        });
+
         if (selectedPlace) {
-            setSelectedPlaceId(selectedPlace.PlaceId);
+            setSelectedPlaceId(selectedPlace.placeId);
+            console.log(selectedPlace.placeId);
         } else {
             setSelectedPlaceId("");
         }

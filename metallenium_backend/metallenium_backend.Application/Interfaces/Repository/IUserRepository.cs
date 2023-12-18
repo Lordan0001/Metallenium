@@ -13,6 +13,8 @@ namespace metallenium_backend.Application.Interfaces.Repository
     {
         Task<List<User>> GetAllUsers();
         Task<User> Registration(UserDto userDTO);
+
+        Task<User> GetUserByEmail(string email);//i need full entity
         Task<String> Login(AuthenticateDto authenticateDto);
     }
 }

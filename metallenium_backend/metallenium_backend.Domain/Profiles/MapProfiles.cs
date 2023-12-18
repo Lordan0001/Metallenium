@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using metallenium_backend.Domain.Dto;
+using metallenium_backend.Domain.Dto.Request;
+using metallenium_backend.Domain.Dto.Response;
 using metallenium_backend.Domain.Models;
 using System;
 using System.Collections.Generic;
@@ -36,6 +38,9 @@ namespace metallenium_backend.Domain.Profiles
 
             CreateMap<TicketDto, Ticket>();
             CreateMap<Ticket, TicketDto>();
+
+            CreateMap<GetUserResponseDto, User>();
+            CreateMap<User, GetUserResponseDto>();
 
         }
     }
