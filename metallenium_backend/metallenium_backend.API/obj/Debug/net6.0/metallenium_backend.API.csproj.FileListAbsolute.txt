@@ -74,3 +74,5 @@ D:\University\Current\Course_Work\metallenium_backend\metallenium_backend.API\ob
 D:\University\Current\Course_Work\metallenium_backend\metallenium_backend.API\obj\Debug\net6.0\ref\metallenium_backend.API.dll
 D:\University\Current\Course_Work\metallenium_backend\metallenium_backend.API\bin\Debug\net6.0\AutoMapper.dll
 D:\University\Current\Course_Work\metallenium_backend\metallenium_backend.API\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+D:\University\Current\Course_Work\metallenium_backend\metallenium_backend.API\bin\Debug\net6.0\BCrypt.Net-Next.dll
+D:\University\Current\Course_Work\metallenium_backend\metallenium_backend.API\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

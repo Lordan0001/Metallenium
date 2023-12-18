@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import styles from "./SignUp.module.css";
-
-import {useNavigate} from "react-router-dom";
-import {UserService} from "../../../Service/UserService";
+import { useNavigate } from "react-router-dom";
+import { UserService } from "../../../Service/UserService";
 
 const SignUp = () => {
     const [userData, setUserData] = useState({
-        userName: "",
-        email: "",
-        password: "",
+        userFirstName: "",
+        userSecondName: "",
+        userEmail: "",
+        userPassword: "",
     });
     const navigate = useNavigate();
 
@@ -18,11 +18,12 @@ const SignUp = () => {
         try {
             const newUser = await UserService.register(userData);
 
-            navigate('/login');
+            navigate("/login");
             setUserData({
-                username: "",
-                email: "",
-                password: "",
+                userFirstName: "",
+                userSecondName: "",
+                userEmail: "",
+                userPassword: "",
             });
         } catch (error) {
             console.error("Error during registration:", error);
@@ -40,28 +41,41 @@ const SignUp = () => {
     return (
         <div className={styles.RegisterContainer}>
             <form onSubmit={handleSubmit} className={styles.formSignUp}>
-                <input className={styles.inputSignUp}
-                       type="text"
-                       placeholder="Username"
-                       name="userName"
-                       value={userData.userName}
-                       onChange={handleInputChange}
+                <input
+                    className={styles.inputSignUp}
+                    type="text"
+                    placeholder="First Name"
+                    name="userFirstName"
+                    value={userData.userFirstName}
+                    onChange={handleInputChange}
                 />
-                <input className={styles.inputSignUp}
-                       type="email"
-                       placeholder="Email"
-                       name="email"
-                       value={userData.email}
-                       onChange={handleInputChange}
+                <input
+                    className={styles.inputSignUp}
+                    type="text"
+                    placeholder="Second Name"
+                    name="userSecondName"
+                    value={userData.userSecondName}
+                    onChange={handleInputChange}
                 />
-                <input className={styles.inputSignUp}
-                       type="password"
-                       placeholder="Password"
-                       name="password"
-                       value={userData.password}
-                       onChange={handleInputChange}
+                <input
+                    className={styles.inputSignUp}
+                    type="email"
+                    placeholder="Email"
+                    name="userEmail"
+                    value={userData.userEmail}
+                    onChange={handleInputChange}
                 />
-                <button className={styles.buttonSignUp}type="submit">Sign up</button>
+                <input
+                    className={styles.inputSignUp}
+                    type="password"
+                    placeholder="Password"
+                    name="userPassword"
+                    value={userData.userPassword}
+                    onChange={handleInputChange}
+                />
+                <button className={styles.buttonSignUp} type="submit">
+                    Sign up
+                </button>
             </form>
         </div>
     );

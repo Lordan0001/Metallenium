@@ -6,6 +6,19 @@ export const UserService = {
         const response = await axios.get('/User')
         return response.data;
     },
+    async getMe(data) {
+        try {
+            const response = await axios.get('/User/getme', {
+                headers: {
+                    Authorization: `bearer ${data}`
+                }
+            });
+            return response.data;
+        } catch (error) {
+            console.error('Error while fetching user:', error);
+            throw error;
+        }
+    },
     async register (data) {
         const response = await axios.post('/User',data)
         return response.data;

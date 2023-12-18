@@ -23,8 +23,8 @@ const SignIn = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const newUser = await UserService.authenticate(user);
-            document.cookie = `jwt=${newUser.token}; path=/`;
+            const token = await UserService.authenticate(user);
+            document.cookie = `jwt=${token}; path=/`;
 
             navigate("/");
             setUser({

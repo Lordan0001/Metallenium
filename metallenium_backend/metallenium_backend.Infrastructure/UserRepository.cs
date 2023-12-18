@@ -73,7 +73,7 @@ namespace metallenium_backend.Infrastructure
             user.UserSecondName = userDto.UserSecondName;
             user.UserPasswordHash = passwordHash;
             user.UserPasswordSalt = passwordSalt;
-            user.UserRoleId = 1;//change
+            user.UserRoleId = 2;//change
 
             await _mainDbContext.Users.AddAsync(user);
             await _mainDbContext.SaveChangesAsync();
