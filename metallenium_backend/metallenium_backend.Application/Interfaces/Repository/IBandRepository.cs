@@ -13,6 +13,7 @@ namespace metallenium_backend.Application.Interfaces.Repository
         Task<Band> GetBandById(int id);
         Task<Band> CreateBand(Band band);
         Task<Band> UpdateBand(Band band);
+        Task<List<Band>> SearchBand(Band band);
         Task<Band> DeleteBand(int id);
 
     }

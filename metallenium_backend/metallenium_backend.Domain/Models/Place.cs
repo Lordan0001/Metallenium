@@ -12,7 +12,7 @@ namespace metallenium_backend.Domain.Models
         public string Address { get; set; } = String.Empty;
         public DateTime Date { get; set; }
         public int CityId { get; set; }
-
+        public int Capacity { get; set; }
         public City City { get; set; }
         public ICollection<Ticket> Tickets { get; set; }
     }

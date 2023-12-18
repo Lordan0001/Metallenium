@@ -6,8 +6,12 @@ export const UserService = {
         const response = await axios.get('/User')
         return response.data;
     },
-    async addUser (data) {
+    async register (data) {
         const response = await axios.post('/User',data)
+        return response.data;
+    },
+    async authenticate (data) {
+        const response = await axios.post('/User/authenticate',data)
         return response.data;
     },
     async updateUser (data) {

@@ -10,6 +10,7 @@ namespace metallenium_backend.Application.Interfaces.Service
     public interface ICityService
     {
         Task<List<CityDto>> GetAllCities();
+        Task<List<CityDto>> GetCitiesByCountryId(int id);
         Task<CityDto> GetCityById(int id);
         Task<CityDto> CreateCity(CityDto cityDto);
         Task<CityDto> UpdateCity(CityDto cityDto);

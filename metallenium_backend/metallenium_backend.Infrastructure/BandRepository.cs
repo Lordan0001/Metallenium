@@ -46,6 +46,13 @@ namespace metallenium_backend.Infrastructure
             return band;
         }
 
+        public async Task<List<Band>> SearchBand(Band band)
+        {
+
+            var matchesBands = await _mainDbContext.Bands.Where(b => b.BandName.Contains(band.BandName)).ToListAsync();
+            return matchesBands;
+        }
+
         public async Task<Band> DeleteBand(int id)
         {
             var bandToDelete = await _mainDbContext.Bands.FirstOrDefaultAsync(b => b.BandId == id);

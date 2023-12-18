@@ -116,7 +116,8 @@ namespace metallenium_backend.API.Migrations
 
                     b.HasKey("ConfirmedTicketId");
 
-                    b.HasIndex("TicketId");
+                    b.HasIndex("TicketId")
+                        .IsUnique();
 
                     b.ToTable("ConfirmedTickets");
                 });
@@ -150,11 +151,14 @@ namespace metallenium_backend.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Capacity")
+                        .HasColumnType("int");
+
                     b.Property<int>("CityId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("smalldatetime");
 
                     b.HasKey("PlaceId");
 
@@ -208,7 +212,8 @@ namespace metallenium_backend.API.Migrations
 
                     b.HasIndex("PlaceId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("Tickets");
                 });

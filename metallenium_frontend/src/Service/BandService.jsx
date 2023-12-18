@@ -10,10 +10,10 @@ export const BandService = {
         const response = await axios.get(`/band/${id}`)
         return response.data;
     },
-    // async searchBand (data) {
-    //     const response = await axios.post(`/bands/search`,data);
-    //     return response.data;
-    // },
+    async searchBand (data) {
+        const response = await axios.post(`/band/search`,data);
+        return response.data;
+    },
     async addBand (data) {
         const response = await axios.post('/band',data)
         return response.data;

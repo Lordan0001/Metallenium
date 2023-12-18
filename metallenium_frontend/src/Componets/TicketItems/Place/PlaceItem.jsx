@@ -36,19 +36,6 @@ const PickPlace = () => {
         }
     };
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        try {
-            const newPlace = await PlaceService.PickPlace(selectedPlaceId);
-            setPlaces((prevPlaces) => prevPlaces.filter((Place) => Place.PlaceId !== selectedPlaceId));
-
-            // Clear the selected values
-            setSelectedPlaceName("");
-            setSelectedPlaceId("");
-        } catch (error) {
-            console.error("Error deleting Place:", error);
-        }
-    };
 
     return (
         <div>
@@ -61,7 +48,6 @@ const PickPlace = () => {
                     </option>
                 ))}
             </select>
-            <button onClick={handleSubmit} type="button">Pick</button>
         </div>
     );
 };

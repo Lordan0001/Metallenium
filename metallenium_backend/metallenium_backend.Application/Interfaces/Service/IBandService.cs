@@ -14,6 +14,10 @@ namespace metallenium_backend.Application.Interfaces.Service
         Task<BandDto> GetBandById(int id);
         Task<BandDto> CreateBand(BandDto bandDto);
         Task<BandDto> UpdateBand(BandDto bandDto);
+        Task<List<BandDto>> SearchBand(BandDto bandDto);
+
         Task<BandDto> DeleteBand(int id);
+
+
     }
 }

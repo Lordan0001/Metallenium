@@ -1,4 +1,5 @@
-﻿using metallenium_backend.Domain.Models;
+﻿using metallenium_backend.Domain.Dto;
+using metallenium_backend.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace metallenium_backend.Application.Interfaces.Repository
     public interface ICityRepository
     {
         Task<List<City>> GetAllCities();
+        Task<List<City>> GetCitiesByCountryId(int id);
         Task<City> GetCityById(int id);
         Task<City> CreateCity(City city);
         Task<City> UpdateCity(City city);

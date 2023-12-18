@@ -1,4 +1,5 @@
 ﻿using metallenium_backend.Application.Interfaces.Repository;
+using metallenium_backend.Domain.Dto;
 using metallenium_backend.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -57,6 +58,26 @@ namespace metallenium_backend.Infrastructure
             _mainDbContext.Tickets.Remove(ticketToDelete);
             await _mainDbContext.SaveChangesAsync();
             return ticketToDelete;
+        }
+
+        public async Task<int> GetTicketsCount(int id)
+        {
+            int currentTicketsCount = await _mainDbContext.Tickets
+               .CountAsync(t => t.PlaceId == id);
+            return currentTicketsCount;
+        }
+        public async Task<int> GetPlaceCapacity(int id)
+        {
+            var place = await _mainDbContext.Places
+                .Where(p => p.PlaceId == id)
+                .FirstOrDefaultAsync();
+            if (place == null)
+            {
+                throw new KeyNotFoundException($"Place: {id} not found");
+            }
+            int capacity = place.Capacity;
+            return capacity;
+
         }
     }
 }

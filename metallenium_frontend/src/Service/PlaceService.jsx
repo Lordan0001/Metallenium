@@ -6,6 +6,10 @@ export const PlaceService = {
         const response = await axios.get('/Place')
         return response.data;
     },
+    async getPlacesByCityId (id) {
+        const response = await axios.get(`/Place/GetPlacesByCityId/${id}`)
+        return response.data;
+    },
     async addPlace (data) {
         const response = await axios.post('/Place',data)
         return response.data;

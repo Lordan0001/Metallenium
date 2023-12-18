@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using metallenium_backend.Application;
 using metallenium_backend.Application.Interfaces.Service;
 using metallenium_backend.Domain.Dto;
 using metallenium_backend.Domain.Models;
@@ -38,7 +39,12 @@ namespace metallenium_backend.API.Controllers
             }
             return Ok(placeFromService);
         }
-
+        [HttpGet("GetPlacesByCityId/{id}")]
+        public async Task<ActionResult<Place>> GetPlacesByCityId(int id)
+        {
+            var placeFromService = await _placeService.GetPlacesByCityId(id);
+            return Ok(placeFromService);
+        }
         [HttpPost]
         public async Task<ActionResult<Place>> CreatePlace(PlaceDto placeDto)
         {

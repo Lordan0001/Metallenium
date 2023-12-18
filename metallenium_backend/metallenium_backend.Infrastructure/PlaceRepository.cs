@@ -32,7 +32,11 @@ namespace metallenium_backend.Infrastructure
             }
             return place;
         }
-
+        public async Task<List<Place>> GetPlacesByCityId(int id)
+        {
+            var places = await _mainDbContext.Places.Where(a => a.CityId == id).ToListAsync();
+            return places;
+        }
         public async Task<Place> CreatePlace(Place place)
         {
             _mainDbContext.Places.Add(place);

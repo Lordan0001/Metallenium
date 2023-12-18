@@ -39,6 +39,10 @@ namespace metallenium_backend.Infrastructure
                 .HasForeignKey(t => t.PlaceId)
                 .OnDelete(DeleteBehavior.NoAction);
 
+            modelBuilder.Entity<Place>()
+                 .Property(p => p.Date)
+                 .HasColumnType("smalldatetime");
+
             modelBuilder.Entity<Country>()
                 .HasMany<City>(c => c.Cities)
                 .WithOne(c => c.Country)
@@ -71,11 +75,18 @@ namespace metallenium_backend.Infrastructure
 
             modelBuilder.Entity<Ticket>()
                 .HasOne(t => t.Country)
-                 .WithMany(c => c.Tickets)
-                  .HasForeignKey(t => t.CountryId)
-                    .OnDelete(DeleteBehavior.NoAction);
+                .WithMany(c => c.Tickets)
+                .HasForeignKey(t => t.CountryId)
+                .OnDelete(DeleteBehavior.NoAction);
 
 
+            modelBuilder.Entity<ConfirmedTicket>()
+                .HasIndex(ct => ct.TicketId)
+                .IsUnique();
+
+            modelBuilder.Entity<Ticket>()
+             .HasIndex(ct => ct.UserId)
+             .IsUnique();
         }
 
         public DbSet<Band> Bands { get; set; }

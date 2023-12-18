@@ -2,21 +2,28 @@ import React, {useState} from "react";
 import styles from "./Header.module.css";
 import {Link, useLocation} from "react-router-dom";
 import {useRecoilState, useRecoilValue} from "recoil";
-import {bandsState} from "../../Recoil/Atoms";
+import {bandsState, isAuthorizedState, userState} from "../../Recoil/Atoms";
 import { useCookies } from 'react-cookie';
 import {BandService} from "../../Service/BandService";
 import {RxCross2} from "react-icons/rx";
 import {IoSearchCircleSharp} from "react-icons/io5";
 
 
-
 const Header = () => {
+    const isAuthorized = useRecoilValue(isAuthorizedState);
+    const [cookies, setCookie, removeCookie] = useCookies(['jwt']);
+    const user = useRecoilValue(userState);
     const [searchValue, setSearchValue] = useState("");
     const [bands,setBands] = useRecoilState(bandsState);
     const location = useLocation();
     const isHomePage = location.pathname === '/';
 
-/*    const handleSearch = async () =>{
+    const handleLogout = () => {
+        removeCookie('jwt');
+        window.location.reload();
+
+    };
+    const handleSearch = async () =>{
         try{
             const searchData  ={
                 "bandName": searchValue,
@@ -30,8 +37,8 @@ const Header = () => {
         catch (e){
             console.error(e);
         }
-    }*/
-/*    const handleCross = async () =>{
+    }
+    const handleCross = async () =>{
         try{
             const allBands = await BandService.getAllBands();
             setBands(allBands);
@@ -40,7 +47,7 @@ const Header = () => {
         catch (e){
             console.error(e);
         }
-    }*/
+    }
 
 
     return (
@@ -48,7 +55,7 @@ const Header = () => {
             <nav className={styles.nav}>
                 <Link className={styles.logo} to='/'>Metallenium</Link>
 
-{/*                {isHomePage && (
+                {isHomePage && (
 
                     <div className={styles.searchContainer}>
 
@@ -68,17 +75,17 @@ const Header = () => {
                         {searchValue && (
                             <RxCross2 className={styles.crossIcon} onClick={handleCross} />)}
                     </div>
-                )}*/}
+                )}
                 <ul className={styles.menu}>
                     <li><Link className={styles.linkHeader} to="/">Home</Link></li>
                     <li><Link className={styles.linkHeader} to="/ticket">Tickets</Link></li>
-{/*                    {user.role === "admin" && (
+                    {user.role === "admin" && (
                         <li><Link className={styles.linkHeader} to="/manage">Manage</Link></li>
-                    )}*/}
+                    )}
 
 
 
-{/*
+
                     {isAuthorized ? (
                         <></>
                     ) : (
@@ -92,7 +99,7 @@ const Header = () => {
                             <li className={styles.userInfo}> {user.userName}</li>
                             <li><button className={styles.logoutButton} onClick={handleLogout}>Logout</button></li>
                         </>
-                    )}*/}
+                    )}
                 </ul>
             </nav>
         </header>

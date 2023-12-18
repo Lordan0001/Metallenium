@@ -52,6 +52,13 @@ namespace metallenium_backend.Application
             return _mapper.Map<BandDto>(updatedBand);
         }
 
+        public async Task<List<BandDto>> SearchBand(BandDto bandDto)
+        {
+            var band = _mapper.Map<Band>(bandDto);
+            var searchedBand = await _bandRepository.SearchBand(band);
+            return _mapper.Map<List<BandDto>>(searchedBand);
+        }
+
         public async Task<BandDto> DeleteBand(int id)
         {
             var deletedBand = await _bandRepository.DeleteBand(id);

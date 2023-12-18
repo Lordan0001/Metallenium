@@ -42,6 +42,13 @@ namespace metallenium_backend.API.Controllers
             var createdBand = await _bandService.CreateBand(bandDto);
             return Ok(createdBand);
         }
+        [HttpPost("Search")]
+        public async Task<ActionResult<Band>> SearchBand(BandDto bandDto)
+        {
+            var searchedBands = await _bandService.SearchBand(bandDto);
+            return Ok(searchedBands);
+        }
+
         [HttpPut]
         public async Task<ActionResult<Band>> UpdateBand(BandDto bandDto)
         {

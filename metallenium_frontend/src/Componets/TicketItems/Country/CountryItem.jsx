@@ -1,12 +1,14 @@
 import {useRecoilState} from "recoil";
 import {useEffect, useState} from "react";
-import {countriesState} from "../../../Recoil/Atoms";
-import {CountryService} from "../../../Service/CountryService";
+import {citiesState, countriesState} from "../../../Recoil/Atoms";
+import {CountryService as cityService, CountryService} from "../../../Service/CountryService";
+import {CityService} from "../../../Service/CityService";
 
 
 const PickCountry = () => {
 
     const [Countries, setCountries] = useRecoilState(countriesState)
+    const [Cities, setCities] = useRecoilState(citiesState)
     const [selectedCountryName, setSelectedCountryName] = useState("");
     const [selectedCountryId, setSelectedCountryId] = useState("");
 
@@ -16,39 +18,31 @@ const PickCountry = () => {
             try {
                 const data = await CountryService.getAllCountries();
                 setCountries(data);
+
             } catch (error) {
                 console.error("Error fetching Countries:", error);
             }
         };
 
         fetchCountries();
-    }, []);
+    }, [selectedCountryName]);
 
-    const handleCountryChange = (event) => {
+    const  handleCountryChange = async (event) => {
         setSelectedCountryName(event.target.value);
 
         // Find the corresponding CountryId based on the selected CountryName
-        const selectedCountry = Countries.find((Country) => Country.CountryName === event.target.value);
+        const selectedCountry = Countries.find((Country) => Country.countryName === event.target.value);
         if (selectedCountry) {
-            setSelectedCountryId(selectedCountry.CountryId);
+            setSelectedCountryId(selectedCountry.countryId);
+            console.log(selectedCountry.countryId)
+            const newData = await CityService.getCitiesByCountryId(selectedCountry.countryId);
+            setCities(newData);
+
         } else {
             setSelectedCountryId("");
         }
     };
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        try {
-            const newCountry = await CountryService.PickCountry(selectedCountryId);
-            setCountries((prevCountries) => prevCountries.filter((Country) => Country.CountryId !== selectedCountryId));
-
-            // Clear the selected values
-            setSelectedCountryName("");
-            setSelectedCountryId("");
-        } catch (error) {
-            console.error("Error deleting Country:", error);
-        }
-    };
 
     return (
         <div>
@@ -61,7 +55,6 @@ const PickCountry = () => {
                     </option>
                 ))}
             </select>
-            <button onClick={handleSubmit} type="button">Pick</button>
         </div>
     );
 };

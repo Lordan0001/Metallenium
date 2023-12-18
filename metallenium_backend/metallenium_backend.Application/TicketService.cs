@@ -40,6 +40,12 @@ namespace metallenium_backend.Application
 
         public async Task<TicketDto> CreateTicket(TicketDto ticketDto)
         {
+            var count = await _ticketRepository.GetTicketsCount(ticketDto.PlaceId);
+            var capacity = await _ticketRepository.GetPlaceCapacity(ticketDto.PlaceId);
+            if(count  > capacity)
+            {
+                throw new InvalidOperationException("SOLDOUT");
+            }
             var ticket = _mapper.Map<Ticket>(ticketDto);
             var createdTicket = await _ticketRepository.CreateTicket(ticket);
             return _mapper.Map<TicketDto>(createdTicket);

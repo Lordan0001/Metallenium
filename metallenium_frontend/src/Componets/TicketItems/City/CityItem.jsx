@@ -1,12 +1,14 @@
 import {useRecoilState} from "recoil";
 import {useEffect, useState} from "react";
-import {citiesState} from "../../../Recoil/Atoms";
+import {citiesState, CitiesState, placesState} from "../../../Recoil/Atoms";
 import {CityService} from "../../../Service/CityService";
+import {PlaceService} from "../../../Service/PlaceService";
 
 
 const PickCity = () => {
 
     const [Cities, setCities] = useRecoilState(citiesState)
+    const [Places, setPlaces] = useRecoilState(placesState)
     const [selectedCityName, setSelectedCityName] = useState("");
     const [selectedCityId, setSelectedCityId] = useState("");
 
@@ -24,32 +26,18 @@ const PickCity = () => {
         fetchCities();
     }, []);
 
-    const handleCityChange = (event) => {
+    const handleCityChange = async (event) => {
         setSelectedCityName(event.target.value);
 
-        // Find the corresponding CityId based on the selected CityName
-        const selectedCity = Cities.find((City) => City.CityName === event.target.value);
+        const selectedCity = Cities.find((City) => City.cityName === event.target.value);
         if (selectedCity) {
-            setSelectedCityId(selectedCity.CityId);
+            setSelectedCityId(selectedCity.cityId);
+            const newPlacesState = await PlaceService.getPlacesByCityId(selectedCity.cityId);
+            setPlaces(newPlacesState);
         } else {
             setSelectedCityId("");
         }
     };
-
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        try {
-            const newCity = await CityService.PickCity(selectedCityId);
-            setCities((prevCities) => prevCities.filter((City) => City.CityId !== selectedCityId));
-
-            // Clear the selected values
-            setSelectedCityName("");
-            setSelectedCityId("");
-        } catch (error) {
-            console.error("Error deleting City:", error);
-        }
-    };
-
     return (
         <div>
             <p>Pick City</p>
@@ -61,7 +49,6 @@ const PickCity = () => {
                     </option>
                 ))}
             </select>
-            <button onClick={handleSubmit} type="button">Pick</button>
         </div>
     );
 };

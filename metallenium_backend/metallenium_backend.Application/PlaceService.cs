@@ -37,6 +37,11 @@ namespace metallenium_backend.Application
             }
             return _mapper.Map<PlaceDto>(place);
         }
+        public async Task<List<PlaceDto>> GetPlacesByCityId(int id)
+        {
+            var places = await _placeRepository.GetPlacesByCityId(id);
+            return _mapper.Map<List<PlaceDto>>(places);
+        }
 
         public async Task<PlaceDto> CreatePlace(PlaceDto placeDto)
         {

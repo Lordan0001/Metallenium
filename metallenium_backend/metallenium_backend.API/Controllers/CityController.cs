@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using metallenium_backend.Application;
 using metallenium_backend.Application.Interfaces.Service;
 using metallenium_backend.Domain.Dto;
 using metallenium_backend.Domain.Models;
@@ -35,6 +36,13 @@ namespace metallenium_backend.API.Controllers
             {
                 return NotFound();
             }
+            return Ok(cityFromService);
+        }
+
+        [HttpGet("GetCitiesByCountryId/{id}")]
+        public async Task<ActionResult<City>> GetCitiesByCountryId(int id)
+        {
+            var cityFromService = await _cityService.GetCitiesByCountryId(id);
             return Ok(cityFromService);
         }
 

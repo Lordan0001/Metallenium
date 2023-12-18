@@ -32,6 +32,11 @@ namespace metallenium_backend.Infrastructure
             }
             return city;
         }
+        public async Task<List<City>> GetCitiesByCountryId(int id)
+        {
+            var cities = await _mainDbContext.Cities.Where(a => a.CountryId == id).ToListAsync();
+            return cities;
+        }
 
         public async Task<City> CreateCity(City city)
         {

@@ -1,4 +1,4 @@
-import {atom} from "recoil";
+import {atom, selector} from "recoil";
 
 export const bandsState = atom({
     key: 'bandsState',
@@ -31,7 +31,23 @@ export const ticketsState = atom({
     key: 'ticketsState',
     default: [],
 });
-export const usersState = atom({
-    key: 'usersState',
+export const tokenState = atom({
+    key: 'tokenState',
     default: [],
+});
+
+export const userState = atom({
+    key: 'userState',
+    default: '',
+});
+
+export const isAuthorizedState = selector({
+    key: 'isAuthorizedState',
+    get: ({ get }) => {
+        const user = get(userState);
+        if(user != ''){
+            return true}
+        else{
+            return false}
+    },
 });
