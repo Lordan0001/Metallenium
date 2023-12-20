@@ -37,7 +37,15 @@ namespace metallenium_backend.Application
             }
             return _mapper.Map<TicketDto>(ticket);
         }
-
+        public async Task<TicketDto> GetTicketByUserId(int id)
+        {
+            var ticket = await _ticketRepository.GetTicketByUserId(id);
+            if (ticket == null)
+            {
+                throw new KeyNotFoundException($"Ticket with ID {id} not found.");
+            }
+            return _mapper.Map<TicketDto>(ticket);
+        }
         public async Task<TicketDto> CreateTicket(TicketDto ticketDto)
         {
             var count = await _ticketRepository.GetTicketsCount(ticketDto.PlaceId);

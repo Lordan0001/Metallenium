@@ -85,6 +85,7 @@ const Header = () => {
                     <li><Link className={styles.linkHeader} to="/">Home</Link></li>
                     <li><Link className={styles.linkHeader} to="/ticket">Tickets</Link></li>
 
+
                     {user.role === "admin" && (
                         <li>
                             <Link className={styles.linkHeader} to="/manage">Manage</Link>
@@ -92,9 +93,8 @@ const Header = () => {
                     )}
 
                     {cookies.jwt ? (
-                        <><li><button className={styles.logoutButton}
-                                    onClick={handleLogout}>Logout</button>
-                            </li>
+                        <>                    <li><Link className={styles.linkHeader} to="/account">Account</Link></li>
+                            <li><button className={styles.logoutButton} onClick={handleLogout}>Logout</button></li>
                         </>
                     ) : (
                         <>

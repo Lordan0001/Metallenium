@@ -13,6 +13,7 @@ namespace metallenium_backend.Application.Interfaces.Service
     public interface IUserService
     {
         Task<List<UserDto>> GetAllUsers();
+        Task<UserDto> GetUserById(int id);
         Task<UserDto> Registration(UserDto userDTO);
         Task<String> Login(AuthenticateDto authenticateDto);
 

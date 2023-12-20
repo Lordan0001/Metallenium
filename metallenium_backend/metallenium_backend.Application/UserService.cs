@@ -29,6 +29,16 @@ namespace metallenium_backend.Application
             var users = await _userRepository.GetAllUsers();
             return _mapper.Map<List<UserDto>>(users);
         }
+        public async Task<UserDto> GetUserById(int id)
+        {
+            var user = await _userRepository.GetUserById(id);
+            if (user == null)
+            {
+                throw new KeyNotFoundException($"User with ID {id} not found.");
+            }
+            return _mapper.Map<UserDto>(user);
+        }
+
         public async Task<GetUserResponseDto> GetUserByEmail(string email)
         {
             var user = await _userRepository.GetUserByEmail(email);

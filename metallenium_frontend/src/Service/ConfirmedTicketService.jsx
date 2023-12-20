@@ -14,6 +14,10 @@ export const ConfirmedTicketService = {
         const response = await axios.put('/ConfirmedTicket',data)
         return response.data;
     },
+    async sendEmail (data) {
+        const response = await axios.post('/EmailSender',data)
+        return response.data;
+    },
     async deleteConfirmedTicket (id){
         const response = await axios.delete(`/ConfirmedTicket/${id}`);
         return response.data;

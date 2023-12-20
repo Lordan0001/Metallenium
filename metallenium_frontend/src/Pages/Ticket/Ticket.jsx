@@ -9,7 +9,7 @@ import {
     countriesState,
     fullUserState,
     placesState, selectedCitiesState,
-    selectedCountriesState, selectedPlacesState,
+    selectedCountriesState, selectedPlacesState, ticketsState,
     userState
 } from "../../Recoil/Atoms";
 import {useEffect} from "react";
@@ -24,6 +24,7 @@ const Ticket = () =>{
     const [country, setcountry] = useRecoilState(selectedCountriesState);
     const [city, setcity] = useRecoilState(selectedCitiesState);
     const [place, setplace] = useRecoilState(selectedPlacesState);
+
     const [cookies, setCookie, removeCookie] = useCookies(['jwt']);
 
     const handleShowIds = async () => {
@@ -59,6 +60,8 @@ const Ticket = () =>{
 
                 setFullUser(data);
                 console.log(data);
+
+
                 }
 
             catch (error) {
@@ -77,7 +80,7 @@ const Ticket = () =>{
               <PickCountry/>
                 <PickCity/>
                 <PickPlace/>
-                <button onClick={handleShowIds}>Show IDs</button>
+                <button onClick={handleShowIds}>Book a ticket</button>
                 <Footer/>
             </div>
 

@@ -33,7 +33,15 @@ namespace metallenium_backend.Infrastructure
             }
             return ticket;
         }
-
+        public async Task<Ticket> GetTicketByUserId(int id)
+        {
+            var ticket = await _mainDbContext.Tickets.FirstOrDefaultAsync(t => t.UserId == id);
+            if (ticket == null)
+            {
+                throw new KeyNotFoundException($"Ticket: {id} not found");
+            }
+            return ticket;
+        }
         public async Task<Ticket> CreateTicket(Ticket ticket)
         {
             _mainDbContext.Tickets.Add(ticket);

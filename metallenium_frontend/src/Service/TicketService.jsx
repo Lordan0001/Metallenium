@@ -6,6 +6,10 @@ export const TicketService = {
         const response = await axios.get('/Ticket')
         return response.data;
     },
+    async getTicketByUserId (id) {
+        const response = await axios.get(`/Ticket/GetTicketByUserId/${id}`)
+        return response.data;
+    },
     async addTicket (data) {
         const response = await axios.post('/Ticket',data)
         return response.data;

@@ -12,6 +12,7 @@ namespace metallenium_backend.Application.Interfaces.Repository
     public interface IUserRepository
     {
         Task<List<User>> GetAllUsers();
+        Task<User> GetUserById(int id);
         Task<User> Registration(UserDto userDTO);
 
         Task<User> GetUserByEmail(string email);//i need full entity

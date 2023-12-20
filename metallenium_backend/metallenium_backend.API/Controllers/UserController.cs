@@ -1,6 +1,8 @@
-﻿using metallenium_backend.Application.Interfaces.Service;
+﻿using metallenium_backend.Application;
+using metallenium_backend.Application.Interfaces.Service;
 using metallenium_backend.Domain.Dto;
 using metallenium_backend.Domain.Dto.Request;
+using metallenium_backend.Domain.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -26,6 +28,17 @@ namespace metallenium_backend.API.Controllers
             var users = await _userService.GetAllUsers();
             return Ok(users);
         }
+        [HttpGet("{id}")]
+        public async Task<ActionResult> GetUserById(int id)
+        {
+            var user = await _userService.GetUserById(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return Ok(user);
+        }
+
         [HttpPost]
         public async Task<ActionResult> CreateUser(UserDto userDTO)
         {

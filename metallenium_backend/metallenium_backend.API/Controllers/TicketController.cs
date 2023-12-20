@@ -38,6 +38,17 @@ namespace metallenium_backend.API.Controllers
             return Ok(ticketFromService);
         }
 
+        [HttpGet("GetTicketByUserId/{id}")]
+        public async Task<ActionResult<Ticket>> GetTicketByUserId(int id)
+        {
+            var ticketFromService = await _ticketService.GetTicketByUserId(id);
+            if (ticketFromService == null)
+            {
+                return NotFound();
+            }
+            return Ok(ticketFromService);
+        }
+
         [HttpPost]
         public async Task<ActionResult<Ticket>> CreateTicket(TicketDto ticketDto)
         {

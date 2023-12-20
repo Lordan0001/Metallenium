@@ -34,6 +34,16 @@ namespace metallenium_backend.Infrastructure
         {
             return await _mainDbContext.Users.ToListAsync();
         }
+        public async Task<User> GetUserById(int id)
+        {
+            var user = await _mainDbContext.Users.FirstOrDefaultAsync(b => b.UserId == id);
+
+            if (user == null)
+            {
+                throw new KeyNotFoundException("User not found with the specified email.");
+            }
+            return user;
+        }
         public async Task<User> GetUserByEmail(string email)
         {
             var user = await _mainDbContext.Users.FirstOrDefaultAsync(u => u.UserEmail == email);

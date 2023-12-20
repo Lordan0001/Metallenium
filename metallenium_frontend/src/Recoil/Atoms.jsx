@@ -52,21 +52,11 @@ export const tokenState = atom({
 
 export const userState = atom({
     key: 'userState',
-    default: '',
+    default: [],
 });
 
 export const fullUserState = atom({
     key: 'fullUserState',
-    default: '',
+    default: [],
 });
 
-export const isAuthorizedState = selector({
-    key: 'isAuthorizedState',
-    get: ({ get }) => {
-        const user = get(userState);
-        if(user != ''){
-            return true}
-        else{
-            return false}
-    },
-});

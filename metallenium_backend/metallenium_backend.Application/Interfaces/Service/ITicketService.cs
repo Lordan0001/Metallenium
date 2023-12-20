@@ -11,6 +11,7 @@ namespace metallenium_backend.Application.Interfaces.Service
     {
         Task<List<TicketDto>> GetAllTickets();
         Task<TicketDto> GetTicketById(int id);
+        Task<TicketDto> GetTicketByUserId(int id);
         Task<TicketDto> CreateTicket(TicketDto ticketDto);
         Task<TicketDto> UpdateTicket(TicketDto ticketDto);
         Task<TicketDto> DeleteTicket(int id);

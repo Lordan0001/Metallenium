@@ -76,3 +76,12 @@ D:\University\Current\Course_Work\metallenium_backend\metallenium_backend.API\bi
 D:\University\Current\Course_Work\metallenium_backend\metallenium_backend.API\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 D:\University\Current\Course_Work\metallenium_backend\metallenium_backend.API\bin\Debug\net6.0\BCrypt.Net-Next.dll
 D:\University\Current\Course_Work\metallenium_backend\metallenium_backend.API\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\University\Current\Course_Work\metallenium_backend\metallenium_backend.API\bin\Debug\net6.0\BouncyCastle.Cryptography.dll
+D:\University\Current\Course_Work\metallenium_backend\metallenium_backend.API\bin\Debug\net6.0\MailKit.dll
+D:\University\Current\Course_Work\metallenium_backend\metallenium_backend.API\bin\Debug\net6.0\MimeKit.dll
+D:\University\Current\Course_Work\metallenium_backend\metallenium_backend.API\bin\Debug\net6.0\System.Formats.Asn1.dll
+D:\University\Current\Course_Work\metallenium_backend\metallenium_backend.API\bin\Debug\net6.0\System.Security.Cryptography.Pkcs.dll
+D:\University\Current\Course_Work\metallenium_backend\metallenium_backend.API\bin\Debug\net6.0\System.Text.Encoding.CodePages.dll
+D:\University\Current\Course_Work\metallenium_backend\metallenium_backend.API\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.Pkcs.dll
+D:\University\Current\Course_Work\metallenium_backend\metallenium_backend.API\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Text.Encoding.CodePages.dll
+D:\University\Current\Course_Work\metallenium_backend\metallenium_backend.API\bin\Debug\net6.0\QRCoder.dll
