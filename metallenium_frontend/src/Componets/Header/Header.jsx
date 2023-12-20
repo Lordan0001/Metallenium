@@ -86,7 +86,7 @@ const Header = () => {
                     <li><Link className={styles.linkHeader} to="/ticket">Tickets</Link></li>
 
 
-                    {user.role === "admin" && (
+                    {user.role === "Administrator" && (
                         <li>
                             <Link className={styles.linkHeader} to="/manage">Manage</Link>
                         </li>

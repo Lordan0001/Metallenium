@@ -5,6 +5,7 @@ import Ticket from "../Pages/Ticket/Ticket";
 import Register from "../Pages/Register/Register";
 import Login from "../Pages/Login/Login";
 import Account from "../Pages/Account/Account";
+import Manage from "../Pages/Manage/Manage";
 
 
 const Router = () =>{
@@ -13,7 +14,7 @@ const Router = () =>{
             <Route element={<Home/>} path='/' />
             <Route element={<Album/>} path='/albums/:id' />
             <Route element={<Ticket/>} path='/ticket' />
-            {/*<Route element={<Manage/>} path='/manage' />*/}
+            <Route element={<Manage/>} path='/manage' />
             <Route element={<Register/>} path='/register' />
             <Route element={<Login/>} path='/login' />
             <Route element={<Account/>} path='/account' />
