@@ -1,9 +1,9 @@
 import {useRecoilState} from "recoil";
 import {useEffect, useState} from "react";
-import {citiesState, CitiesState, placesState, selectedCitiesState} from "../../../Recoil/Atoms";
+import {citiesState, placesState, selectedCitiesState} from "../../../Recoil/Atoms";
 import {CityService} from "../../../Service/CityService";
 import {PlaceService} from "../../../Service/PlaceService";
-
+import styles from './CityItem.module.css'
 
 const PickCity = () => {
 
@@ -40,9 +40,9 @@ const PickCity = () => {
         }
     };
     return (
-        <div>
-            <p>Pick City</p>
-            <select value={selectedCityName} onChange={handleCityChange}>
+        <div className={styles.container}>
+            <p className={styles.selectContainer}>Pick City</p>
+            <select className={styles.selectCity} value={selectedCityName} onChange={handleCityChange}>
                 <option value="">Select a City</option>
                 {Cities.map((city) => (
                     <option key={city.cityId} value={city.cityName}>

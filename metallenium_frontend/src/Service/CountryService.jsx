@@ -16,6 +16,10 @@ export const CountryService = {
     async deleteCountry (id){
         const response = await axios.delete(`/Country/${id}`);
         return response.data;
-    }
+    },
+    async searchCountry (data) {
+        const response = await axios.post(`/Country/search`,data);
+        return response.data;
+    },
 
 }

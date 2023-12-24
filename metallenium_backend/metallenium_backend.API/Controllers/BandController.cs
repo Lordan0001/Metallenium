@@ -2,6 +2,7 @@
 using metallenium_backend.Application.Interfaces.Service;
 using metallenium_backend.Domain.Dto;
 using metallenium_backend.Domain.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -37,11 +38,33 @@ namespace metallenium_backend.API.Controllers
             }
             return Ok(bandFromService);
         }
-        [HttpPost]
-        public async Task<ActionResult<Band>> CreateBand(BandDto bandDto) {
+        [HttpPost, Authorize(Roles = "Administrator")]
+        public async Task<ActionResult<Band>> CreateBand([FromForm] BandDto bandDto, IFormFile image) {
+
+            if (image != null && image.Length > 0)
+            {
+                // Get the original filename of the image
+                var fileName = Path.GetFileName(image.FileName);
+
+                // Save the image to the server's upload folder with the original filename
+                var imagePath = Path.Combine("uploads/bands", fileName);
+                using (var fileStream = new FileStream(imagePath, FileMode.Create))
+                {
+                    await image.CopyToAsync(fileStream);
+                }
+
+                // Set the imageUrl property of the band to the saved image path
+                bandDto.BandImageUrl = imagePath;
+            }
+
+
+
             var createdBand = await _bandService.CreateBand(bandDto);
             return Ok(createdBand);
         }
+
+
+
         [HttpPost("Search")]
         public async Task<ActionResult<Band>> SearchBand(BandDto bandDto)
         {
@@ -49,14 +72,33 @@ namespace metallenium_backend.API.Controllers
             return Ok(searchedBands);
         }
 
-        [HttpPut]
-        public async Task<ActionResult<Band>> UpdateBand(BandDto bandDto)
+        [HttpPut, Authorize(Roles = "Administrator")]
+        public async Task<ActionResult<Band>> UpdateBand([FromForm] BandDto bandDto, IFormFile image)
         {
 
-            var updatedBand = await _bandService.UpdateBand(bandDto);
-            return Ok(updatedBand);
+            if (image != null && image.Length > 0)
+            {
+                // Get the original filename of the image
+                var fileName = Path.GetFileName(image.FileName);
+
+                // Save the image to the server's upload folder with the original filename
+                var imagePath = Path.Combine("uploads/bands", fileName);
+                using (var fileStream = new FileStream(imagePath, FileMode.Create))
+                {
+                    await image.CopyToAsync(fileStream);
+                }
+
+                // Set the imageUrl property of the band to the saved image path
+                bandDto.BandImageUrl = imagePath;
+            }
+
+
+
+            var createdBand = await _bandService.UpdateBand(bandDto);
+            return Ok(createdBand);
         }
-        [HttpDelete]
+        [HttpDelete("{id}")]
+        [Authorize(Roles = "Administrator")]
         public async Task<ActionResult> DeleteBand(int id)
         {
             var deletedBand = await _bandService.DeleteBand(id);

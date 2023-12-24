@@ -87,9 +87,15 @@ const Header = () => {
 
 
                     {user.role === "Administrator" && (
+                        <>
                         <li>
-                            <Link className={styles.linkHeader} to="/manage">Manage</Link>
+                            <Link className={styles.linkHeader} to="/manage">Manage Bands</Link>
                         </li>
+                        <li>
+
+                        <Link className={styles.linkHeader} to="/manageticket">Manage Ticket</Link>
+            </li></>
+
                     )}
 
                     {cookies.jwt ? (

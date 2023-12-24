@@ -14,7 +14,8 @@ const UpdateAlbum = () => {
     });
 
     const [bands, setBands] = useRecoilState(bandsState);
-    const setAlbums = useSetRecoilState(albumsState);
+    const [albums, setAlbums] = useRecoilState(albumsState);
+
 
     useEffect(() => {
         // Fetch bands data and store them in the state
@@ -22,6 +23,9 @@ const UpdateAlbum = () => {
             try {
                 const data = await BandService.getAllBands();
                 setBands(data);
+
+                const dataAlbums = await AlbumService.getAllAlbums();
+                setAlbums(dataAlbums);
             } catch (error) {
                 console.error("Error fetching bands:", error);
             }
@@ -43,6 +47,14 @@ const UpdateAlbum = () => {
         setAlbumData({
             ...albumData,
             albumImageUrl: file,
+        });
+    };
+
+    const handleAlbumSelect = (event) => {
+        const selectedAlbum = albums.find((album) => album.albumId === event.target.value);
+        setAlbumData({
+            ...selectedAlbum,
+            albumId: event.target.value,
         });
     };
 
@@ -81,13 +93,14 @@ const UpdateAlbum = () => {
         <div>
             <p>Update Album</p>
             <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    name="albumId"
-                    placeholder="Album ID"
-                    value={albumData.albumId}
-                    onChange={handleInputChange}
-                />
+                <select name="albumId" value={albumData.albumId} onChange={handleAlbumSelect}>
+                    <option value="" disabled>Select an Album</option>
+                    {albums.map((album) => (
+                        <option key={album.albumId} value={album.albumId}>
+                            {album.albumName}
+                        </option>
+                    ))}
+                </select>
                 <input
                     type="text"
                     name="albumName"

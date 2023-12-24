@@ -1,0 +1,98 @@
+/* Ticket.module.css */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Set minimum height to 100% of the viewport height */
+
+}
+
+.pickItems {
+    margin-top: 120px;
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.buttonContainer {
+    margin-top: 20px;
+}
+
+.bookButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.bookButton:hover {
+    background-color: #45a049;
+}
+
+.loginMessage {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.footer {
+    margin-top: auto; /* Push the footer to the bottom */
+    background-color: #333; /* Set the background color as needed */
+    color: white; /* Set the text color as needed */
+    padding: 10px;
+}
+/* Ticket.module.css */
+
+/* Ticket.module.css */
+
+
+.countrySearchContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: calc(33vh - 10px - 150px); /* 33% высоты страницы минус половина высоты контейнера и 70px вверх */
+}
+
+.countrySearchInput {
+    width: 80%;
+    max-width: 300px; /* Максимальная ширина контейнера */
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.iconContainer {
+    display: flex;
+    align-items: center;
+}
+
+.searchIcon,
+.crossIcon {
+    font-size: 20px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.searchIcon {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.searchIcon:hover {
+    background-color: #45a049;
+}
+
+.crossIcon {
+    color: #ff4d4d;
+}
+
+.crossIcon:hover {
+    color: #e53935;
+}

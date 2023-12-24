@@ -26,6 +26,7 @@ const SignUp = () => {
                 userPassword: "",
             });
         } catch (error) {
+            alert("User with this email already exists!");
             console.error("Error during registration:", error);
         }
     };

@@ -8,10 +8,17 @@ import DeleteAlbum from "../../Componets/ManageItem/Delete/DeleteAlbum";
 import Header from "../../Componets/Header/Header";
 import styles from "./Manage.module.css";
 import Footer from "../../Componets/Footer/Footer";
+import {UserService} from "../../Service/UserService";
+import {useCookies} from "react-cookie";
+import {useRecoilState} from "recoil";
+import {tokenState, userState} from "../../Recoil/Atoms";
 
 
 const Manage = () => {
     const [currentMode, setCurrentMode] = useState("Add");
+    const [cookies, setCookie, removeCookie] = useCookies(['jwt']);
+    const [token, setToken] = useRecoilState(tokenState);
+    const [user, setUser] = useRecoilState(userState);
 
     const modes = [
         {
@@ -35,12 +42,30 @@ const Manage = () => {
     };
 
     useEffect(() => {
-        // Восстанавливаем текущий режим из локального хранилища при загрузке компонента
-        const savedMode = localStorage.getItem("currentMode");
-        if (savedMode && modes.some((mode) => mode.label === savedMode)) {
-            setCurrentMode(savedMode);
-        }
-    }, []);
+        const fetchData = async () => {
+            try {
+                const savedMode = localStorage.getItem("currentMode");
+                if (savedMode && modes.some((mode) => mode.label === savedMode)) {
+                    setCurrentMode(savedMode);
+                }
+                if(cookies.jwt){
+                    setToken(cookies.jwt);
+                    if (token !='') {
+                        const userData = await UserService.getMe(token);
+                        setUser(userData);
+                    }
+                }
+
+            } catch (error) {
+                console.error('Error fetching bands:', error);
+            } finally {
+
+            }
+        };
+
+
+        fetchData();
+    }, [cookies, token]);
 
     return (
         <div>

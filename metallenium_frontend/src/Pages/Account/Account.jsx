@@ -6,7 +6,7 @@ import {
     countriesState,
     fullUserState,
     placesState, selectedCitiesState,
-    selectedCountriesState, selectedPlacesState, ticketsState,
+    selectedCountriesState, selectedPlacesState, ticketsState, tokenState,
     userState
 } from "../../Recoil/Atoms";
 import {useEffect} from "react";
@@ -17,6 +17,7 @@ import {TicketService} from "../../Service/TicketService";
 import {CountryService} from "../../Service/CountryService";
 import {CityService} from "../../Service/CityService";
 import {PlaceService} from "../../Service/PlaceService";
+import styles from "./Account.module.css"
 
 
 const Account = () =>{
@@ -26,6 +27,8 @@ const Account = () =>{
     const [city, setCity] = useRecoilState(selectedCitiesState);
     const [place, setPlace] = useRecoilState(selectedPlacesState);
     const [ticket, setTicket] = useRecoilState(ticketsState)
+    const [token, setToken] = useRecoilState(tokenState);
+    const [user, setUser] = useRecoilState(userState);
     const [cookies, setCookie, removeCookie] = useCookies(['jwt']);
 
 
@@ -54,6 +57,15 @@ const Account = () =>{
 
                 const placeData =  await PlaceService.getAllPlaces()
                 setPlace(placeData);
+
+
+                if(cookies.jwt){
+                    setToken(cookies.jwt);
+                    if (token !='') {
+                        const userData = await UserService.getMe(token);
+                        setUser(userData);
+                    }
+                }
             }
 
             catch (error) {
@@ -63,18 +75,17 @@ const Account = () =>{
 
 
         fetchData();
-    }, []);
+    }, [cookies, token]);
 
-    return(
-        <div>
-            <div>
-                <Header/>
-                <AccountItem/>
-                <Footer/>
+    return (
+        <div className={styles.pageContainer}>
+            <Header />
+            <div className={styles.contentContainer}>
+                <AccountItem />
             </div>
-
+            <Footer className={styles.footer} />
         </div>
-    )
+    );
 }
 
 export default Account;

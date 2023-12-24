@@ -14,5 +14,7 @@ namespace metallenium_backend.Application.Interfaces.Service
         Task<CountryDto> CreateCountry(CountryDto countryDto);
         Task<CountryDto> UpdateCountry(CountryDto countryDto);
         Task<CountryDto> DeleteCountry(int id);
+
+        Task<List<CountryDto>> SearchCountry(CountryDto countryDto);
     }
 }

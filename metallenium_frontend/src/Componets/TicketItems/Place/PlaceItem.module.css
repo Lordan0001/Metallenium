@@ -1,0 +1,17 @@
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+}
+
+.selectContainer {
+    margin-top: 10px;
+}
+
+.selectPlace {
+    padding: 8px;
+    font-size: 16px;
+    width: 250px; /* Set width as needed */
+}

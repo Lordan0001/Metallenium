@@ -33,6 +33,7 @@ const SignIn = () => {
             });
         } catch (error) {
             console.error("Error during login:", error);
+            alert("Check your email or password");
         }
     };
 

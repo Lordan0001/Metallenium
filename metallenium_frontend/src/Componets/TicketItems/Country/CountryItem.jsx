@@ -1,9 +1,9 @@
 import {useRecoilState} from "recoil";
 import {useEffect, useState} from "react";
 import {citiesState, countriesState, selectedCountriesState} from "../../../Recoil/Atoms";
-import {CountryService as cityService, CountryService} from "../../../Service/CountryService";
+import {CountryService} from "../../../Service/CountryService";
 import {CityService} from "../../../Service/CityService";
-
+import styles from './CoutryItem.module.css'
 
 const PickCountry = () => {
 
@@ -30,7 +30,6 @@ const PickCountry = () => {
     const  handleCountryChange = async (event) => {
         setSelectedCountryName(event.target.value);
 
-        // Find the corresponding CountryId based on the selected CountryName
         const selectedCountry = Countries.find((Country) => Country.countryName === event.target.value);
         if (selectedCountry) {
             setSelectedCountryId(selectedCountry.countryId);
@@ -45,9 +44,9 @@ const PickCountry = () => {
 
 
     return (
-        <div>
-            <p>Pick Country</p>
-            <select value={selectedCountryName} onChange={handleCountryChange}>
+        <div className={styles.container}>
+            <p className={styles.selectContainer}>Pick Country</p>
+            <select className={styles.selectCountry} value={selectedCountryName} onChange={handleCountryChange}>
                 <option value="">Select a Country</option>
                 {Countries.map((country) => (
                     <option key={country.countryId} value={country.countryName}>
@@ -58,5 +57,6 @@ const PickCountry = () => {
         </div>
     );
 };
+
 
 export default PickCountry;

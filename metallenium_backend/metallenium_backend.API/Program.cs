@@ -95,6 +95,8 @@ app.UseStaticFiles(new StaticFileOptions
         Path.Combine(Directory.GetCurrentDirectory(), "uploads")),
     RequestPath = "/uploads"
 });
+
+/*/app/uploads*/
 app.UseCors(builder => builder
     .AllowAnyOrigin() 
     .AllowAnyHeader() 

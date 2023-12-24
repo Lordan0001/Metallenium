@@ -1,9 +1,12 @@
 ﻿using AutoMapper;
+using metallenium_backend.Application;
 using metallenium_backend.Application.Interfaces.Service;
 using metallenium_backend.Domain.Dto;
 using metallenium_backend.Domain.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 namespace metallenium_backend.API.Controllers
 {
@@ -38,14 +41,20 @@ namespace metallenium_backend.API.Controllers
             return Ok(countryFromService);
         }
 
-        [HttpPost]
+        [HttpPost, Authorize(Roles = "Administrator")]
         public async Task<ActionResult<Country>> CreateCountry(CountryDto countryDto)
         {
             var createdCountry = await _countryService.CreateCountry(countryDto);
             return Ok(createdCountry);
         }
+        [HttpPost("Search")]
+        public async Task<ActionResult<Country>> SearchCountry(CountryDto countrydDto)
+        {
+            var searchedCountries = await _countryService.SearchCountry(countrydDto);
+            return Ok(searchedCountries);
+        }
 
-        [HttpPut]
+        [HttpPut, Authorize(Roles = "Administrator")]
         public async Task<ActionResult<Country>> UpdateCountry(CountryDto countryDto)
         {
             var updatedCountry = await _countryService.UpdateCountry(countryDto);
@@ -53,6 +62,7 @@ namespace metallenium_backend.API.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Administrator")]
         public async Task<ActionResult> DeleteCountry(int id)
         {
             var deletedCountry = await _countryService.DeleteCountry(id);

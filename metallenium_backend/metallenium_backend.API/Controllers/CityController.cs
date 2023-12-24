@@ -3,8 +3,10 @@ using metallenium_backend.Application;
 using metallenium_backend.Application.Interfaces.Service;
 using metallenium_backend.Domain.Dto;
 using metallenium_backend.Domain.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 namespace metallenium_backend.API.Controllers
 {
@@ -46,14 +48,14 @@ namespace metallenium_backend.API.Controllers
             return Ok(cityFromService);
         }
 
-        [HttpPost]
+        [HttpPost, Authorize(Roles = "Administrator")]
         public async Task<ActionResult<City>> CreateCity(CityDto cityDto)
         {
             var createdCity = await _cityService.CreateCity(cityDto);
             return Ok(createdCity);
         }
 
-        [HttpPut]
+        [HttpPut, Authorize(Roles = "Administrator")]
         public async Task<ActionResult<City>> UpdateCity(CityDto cityDto)
         {
             var updatedCity = await _cityService.UpdateCity(cityDto);
@@ -61,6 +63,7 @@ namespace metallenium_backend.API.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Administrator")]
         public async Task<ActionResult> DeleteCity(int id)
         {
             var deletedCity = await _cityService.DeleteCity(id);

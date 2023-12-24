@@ -41,11 +41,13 @@ const AccountItem = () => {
                 cityId: ticket.cityId,
                 placeId: ticket.placeId
             };
-            console.log(ticketData);
+
              const response = await ConfirmedTicketService.sendEmail(ticketData);
+            alert("Check your email!");
 
         } catch (error) {
             console.error("Error handling IDs or adding Account:", error);
+            alert("Your ticket is already confirmed!");
         }
     };
 

@@ -2,7 +2,7 @@ import {useRecoilState} from "recoil";
 import {useEffect, useState} from "react";
 import {placesState, selectedPlacesState} from "../../../Recoil/Atoms";
 import {PlaceService} from "../../../Service/PlaceService";
-
+import styles from './PlaceItem.module.css'
 
 const PickPlace = () => {
 
@@ -46,9 +46,9 @@ const PickPlace = () => {
 
 
     return (
-        <div>
-            <p>Pick Place</p>
-            <select value={selectedPlaceName} onChange={handlePlaceChange}>
+        <div className={styles.container}>
+            <p className={styles.selectContainer}>Pick Place</p>
+            <select className={styles.selectPlace} value={selectedPlaceName} onChange={handlePlaceChange}>
                 <option value="">Select a Place</option>
                 {Places.map((place) => (
                     <option key={place.placeId} value={`${place.address} - ${place.date}`}>
@@ -59,5 +59,4 @@ const PickPlace = () => {
         </div>
     );
 };
-
 export default PickPlace;

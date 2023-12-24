@@ -58,5 +58,12 @@ namespace metallenium_backend.Infrastructure
             await _mainDbContext.SaveChangesAsync();
             return countryToDelete;
         }
+
+        public async Task<List<Country>> SearchCountry(Country country)
+        {
+
+            var matchesContries = await _mainDbContext.Countries.Where(b => b.CountryName.Contains(country.CountryName)).ToListAsync();
+            return matchesContries;
+        }
     }
 }

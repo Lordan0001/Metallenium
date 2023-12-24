@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "y3NWWadE06OI56YtlM+ajSMoLBJhLCaYquPHAaecX5O8/WCvwM67/MH9/5HByVNBTti8YHt2+KzHIJejdN5Nqg==",
+  "dgSpecHash": "KiigKrBo9vqbDad9EKoTqBGHr09RUuQu5/Pn1pKaHKFDA1r+ZpqlRlj5U1ED37Jvo/xjOGYe8+h0zVnPGesHYg==",
   "success": true,
   "projectFilePath": "D:\\University\\Current\\Course_Work\\metallenium_backend\\metallenium_backend.API\\metallenium_backend.API.csproj",
   "expectedPackageFiles": [
@@ -39,6 +39,7 @@
     "C:\\Users\\Vladislav\\.nuget\\packages\\microsoft.identitymodel.tokens\\6.10.0\\microsoft.identitymodel.tokens.6.10.0.nupkg.sha512",
     "C:\\Users\\Vladislav\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\Vladislav\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\Vladislav\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.19.4\\microsoft.visualstudio.azure.containers.tools.targets.1.19.4.nupkg.sha512",
     "C:\\Users\\Vladislav\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\Vladislav\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\Vladislav\\.nuget\\packages\\mimekit\\4.3.0\\mimekit.4.3.0.nupkg.sha512",

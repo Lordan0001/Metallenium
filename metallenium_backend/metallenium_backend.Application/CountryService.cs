@@ -61,6 +61,13 @@ namespace metallenium_backend.Application
             }
             return _mapper.Map<CountryDto>(deletedCountry);
         }
+
+        public async Task<List<CountryDto>> SearchCountry(CountryDto countryDto)
+        {
+            var country = _mapper.Map<Country>(countryDto);
+            var searchedCountry = await _countryRepository.SearchCountry(country);
+            return _mapper.Map<List<CountryDto>>(searchedCountry);
+        }
     }
 
 }

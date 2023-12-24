@@ -16,5 +16,7 @@ namespace metallenium_backend.Application.Interfaces.Repository
         Task<Country> UpdateCountry(Country country);
         Task<Country> DeleteCountry(int id);
 
+        Task<List<Country>> SearchCountry(Country country);
+
     }
 }

@@ -1,19 +1,18 @@
 import React, { useState } from "react";
 import { BandService } from "../../../Service/BandService";
-import {useRecoilState, useSetRecoilState} from "recoil";
-import {bandsState} from "../../../Recoil/Atoms";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { bandsState } from "../../../Recoil/Atoms";
 
 const UpdateBand = () => {
     const [bandData, setBandData] = useState({
-        bandId : "",
+        bandId: "",
         bandName: "",
         bandDescription: "",
         bandType: "",
         bandImageUrl: null,
     });
 
-    const [bands,setBands] = useRecoilState(bandsState)
-
+    const [bands, setBands] = useRecoilState(bandsState);
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -31,6 +30,14 @@ const UpdateBand = () => {
         });
     };
 
+    const handleBandSelect = (event) => {
+        const selectedBand = bands.find((band) => band.bandId === event.target.value);
+        setBandData({
+            ...selectedBand,
+            bandId: event.target.value,
+        });
+    };
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
@@ -42,9 +49,8 @@ const UpdateBand = () => {
             formData.append("bandType", bandData.bandType);
             formData.append("image", bandData.bandImageUrl);
 
-
             const newBand = await BandService.updateBand(formData);
-            setBands((prevBands) =>[...prevBands,newBand])
+            setBands((prevBands) => [...prevBands, newBand]);
 
             setBandData({
                 bandId: "",
@@ -61,39 +67,39 @@ const UpdateBand = () => {
     return (
         <div>
             <p>Update Band</p>
-        <form onSubmit={handleSubmit}>
-            <input
-                type="number"
-                name="bandId"
-                placeholder="Band Id"
-                value={bandData.bandId}
-                onChange={handleInputChange}
-            />
-            <input
-                type="text"
-                name="bandName"
-                placeholder="Band Name"
-                value={bandData.bandName}
-                onChange={handleInputChange}
-            />
-            <input
-                type="text"
-                name="bandDescription"
-                placeholder="Band Description"
-                value={bandData.bandDescription}
-                onChange={handleInputChange}
-            />
-            <input
-                type="text"
-                name="bandType"
-                placeholder="Band Type"
-                value={bandData.bandType}
-                onChange={handleInputChange}
-            />
-            {/* Input for image upload */}
-            <input type="file" name="image" onChange={handleImageChange} />
-            <button  type="submit">Send</button>
-        </form></div>
+            <form onSubmit={handleSubmit}>
+                <select name="bandId" value={bandData.bandId} onChange={handleBandSelect}>
+                    <option value="" disabled>Select Band</option>
+                    {bands.map((band) => (
+                        <option key={band.bandId} value={band.bandId}>{band.bandName}</option>
+                    ))}
+                </select>
+                <input
+                    type="text"
+                    name="bandName"
+                    placeholder="Band Name"
+                    value={bandData.bandName}
+                    onChange={handleInputChange}
+                />
+                <input
+                    type="text"
+                    name="bandDescription"
+                    placeholder="Band Description"
+                    value={bandData.bandDescription}
+                    onChange={handleInputChange}
+                />
+                <input
+                    type="text"
+                    name="bandType"
+                    placeholder="Band Type"
+                    value={bandData.bandType}
+                    onChange={handleInputChange}
+                />
+                {/* Input for image upload */}
+                <input type="file" name="image" onChange={handleImageChange} />
+                <button type="submit">Send</button>
+            </form>
+        </div>
     );
 };
 
